@@ -11,15 +11,14 @@ import { data } from "autoprefixer";
 export default function CardTable({ color}) {
   const [showModal, setShowModal] = useState(false);
   const [users, setUsers] = useState(null);
-  const [citizen, setCitizen] = useState(null);
-  let citi = null;
+  const [houshold, setHousehold] = useState(null);
   let history = useHistory();
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = () => {
-    fetch("http://localhost:5000/citizen/list", {
+    fetch("http://localhost:5000/household/list", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -60,7 +59,7 @@ export default function CardTable({ color}) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Citizen list
+                Danh sách các hộ gia đình
               </h3>
             </div>
             <Link
@@ -68,7 +67,7 @@ export default function CardTable({ color}) {
               className="text-lightBlue-500 bg-transparent border border-solid border-lightBlue-500 hover:bg-lightBlue-500 hover:text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               type="button"
             >
-              Create
+              Tạo
             </Link>
           </div>
         </div>
@@ -85,7 +84,7 @@ export default function CardTable({ color}) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Tên
+                  Mã hộ
                 </th>
                 <th
                   className={
@@ -95,7 +94,7 @@ export default function CardTable({ color}) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Giới tính
+                  Chủ hộ
                 </th>
                 {/* <th
                   className={
@@ -132,10 +131,10 @@ export default function CardTable({ color}) {
                 users.map((user) => (
                   <tr key={user._id}>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-l whitespace-nowrap p-4">
-                        {user.name.firstName} {user.name.lastName}
+                        {user.household_id}
                     </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {user.gender === "MALE" ? <p>Nam</p> : (user.gender === "FEMALE" ? <p>Nữ</p> : <p>Khác</p>)}
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-l whitespace-nowrap p-4">
+                        {user.owner_id.name.firstName} {user.owner_id.name.lastName}
                     </td>
                     {/* <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       {user.phone}
@@ -158,7 +157,7 @@ export default function CardTable({ color}) {
                         type="button"
                         onClick={(e) => {
                           e.preventDefault();
-                          history.replace("/leader/citizen/profile", {state: user._id})
+                          history.replace("/leader/household/profile", {state: user._id})
                         }}
                       >
                         Xem

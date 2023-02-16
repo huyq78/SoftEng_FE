@@ -19,6 +19,7 @@ import CreateCitizen from "views/leader/CreateCitizen";
 import Stay from "views/leader/Stay";
 import Death from "views/leader/Death";
 import CitizenProfile from "views/leader/CitizenProfile";
+import HouseholdProfile from "views/leader/HouseholdProfile";
 
 export default function Leader() {
   return (
@@ -33,11 +34,12 @@ export default function Leader() {
             <Route path="/leader/dashboard" exact component={Dashboard} />
             <Route path="/leader/absence" exact component={Absence} />
             <Route path="/leader/create-citizen" exact component={CreateCitizen} />
-            <Route path="/leader/house-hold" exact component={Household} />
+            <Route path="/leader/household" exact component={Household} />
             <Route path="/leader/citizen" exact component={Citizen} />
             <Route path="/leader/stay" exact component={Stay} />
             <Route path="/leader/death" exact component={Death} />
             <Route path="/leader/citizen/profile" exact component={CitizenProfile} />
+            <Route path="/leader/household/profile" exact component={HouseholdProfile} />
             {/* <Route path="/leader/register" exact component={Register} /> */}
             <Redirect from="/leader" to="/leader/dashboard" />
           </Switch>

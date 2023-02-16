@@ -3,8 +3,7 @@ import React, {useEffect, useState} from "react";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import format from 'date-fns/format'
-export default function CitizenProfile() {
+export default function HouseholdProfile() {
   const location = useLocation();
   const [citizen, setCitizen] = useState(null);
   const [isFetching, setFetching] = useState(false);
