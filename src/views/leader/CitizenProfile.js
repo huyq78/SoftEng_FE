@@ -16,7 +16,10 @@ export default function CitizenProfile() {
     date: "",
     expiration: "",
   });
-
+  const [inputCard, setInputCard] = useState({
+    cardId: "",
+    location: "",
+  });
   const citizenId = location.state.state;
   
   let history = useHistory();
@@ -32,6 +35,10 @@ export default function CitizenProfile() {
 
   const handleDate = (event) =>
     setInputDate({...inputDate,
+    [event.target.name]: event.target.value,
+    })
+    const handleCard = (event) =>
+    setInputCard({...inputCard,
     [event.target.name]: event.target.value,
     })
   const fetchCitizen = () => {
@@ -68,8 +75,8 @@ export default function CitizenProfile() {
         Authorization: "Bearer " + localStorage.getItem("token")
       },
       body: JSON.stringify({
-      card_id: inputText.card_id.card_id,
-      location: inputText.card_id.location,
+      card_id: inputCard.cardId,
+      location: inputCard.location,
       date: inputDate.date,
       expiration: inputDate.expiration,
       passport_id: inputText.passport_id,
@@ -315,11 +322,11 @@ export default function CitizenProfile() {
                     Card ID
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    name="card_id.card_id"
-                    value={inputText.card_id.card_id}
-                    onChange={handleChange}
+                    name="cardId"
+                    value={inputCard.cardId}
+                    onChange={handleCard}
                   />
                 </div>
               </div>
@@ -334,9 +341,9 @@ export default function CitizenProfile() {
                   <input
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    name="card_id.location"
-                    value={inputText.card_id.location}
-                    onChange={handleChange}
+                    name="location"
+                    value={inputCard.location}
+                    onChange={handleCard}
                   />
                 </div>
               </div>
@@ -546,6 +553,7 @@ export default function CitizenProfile() {
                         className="font-normal text-lightBlue-500"
                         onClick={()=>{
                           setInputText(citizen);
+                          setInputCard({cardId: citizen.card_id.card_id, location: citizen.card_id.location})
                           setShowModal(true);
                           setProfile(false);
                         }}

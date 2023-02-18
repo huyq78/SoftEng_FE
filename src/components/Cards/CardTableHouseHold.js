@@ -33,7 +33,7 @@ export default function CardTable({ color}) {
   
 
   const fetchDelete = (id) => {
-    fetch(`http://localhost:5000/user/delete/${id}`, {
+    fetch(`http://localhost:5000/household/delete/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -63,7 +63,7 @@ export default function CardTable({ color}) {
               </h3>
             </div>
             <Link
-            to="/leader/create-citizen"
+            to="/leader/create-household"
               className="text-lightBlue-500 bg-transparent border border-solid border-lightBlue-500 hover:bg-lightBlue-500 hover:text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               type="button"
             >
@@ -136,21 +136,6 @@ export default function CardTable({ color}) {
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-l whitespace-nowrap p-4">
                         {user.owner_id.name.firstName} {user.owner_id.name.lastName}
                     </td>
-                    {/* <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {user.phone}
-                    </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {user.status ? (
-                        <i className="fas fa-circle text-emerald-500 mr-2">
-                          {" "}
-                          active{" "}
-                        </i>
-                      ) : (
-                        <i className="fas fa-circle text-red-500 mr-2">
-                          incative
-                        </i>
-                      )}
-                    </td> */}
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
                       <button
                         className="text-teal-500 bg-transparent border border-solid border-teal-500 hover:bg-teal-500 hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -165,10 +150,9 @@ export default function CardTable({ color}) {
                       <button
                         className="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
-                        id={user._id}
                         onClick={(e) => {
-                          fetchDelete(e.currentTarget.id);
-                          window.location.reload(true);
+                          fetchDelete(user._id);
+                          // window.location.reload(true);
                         }}
                       >
                         Xóa
