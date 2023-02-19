@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router";
 
 // components
 
-export default function CreateAbsence() {
+export default function CreateStay() {
   const [inputText, setInputText] = useState({
     citizen_id: "",
     code: "",
@@ -24,7 +24,7 @@ export default function CreateAbsence() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:5000/absence/create", {
+    fetch("http://localhost:5000/stay/create", {
       method: "POST",
       headers: {
         Accept: "application/json, */*",
@@ -61,7 +61,7 @@ export default function CreateAbsence() {
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <div className="rounded-t  mb-0 px-6 py-6">
             <div className="text-center flex justify-between">
-              <h6 className="text-blueGray-700 text-xl font-bold">Tạm vắng</h6>
+              <h6 className="text-blueGray-700 text-xl font-bold">Tạm chú</h6>
             </div>
           </div>
           <form>

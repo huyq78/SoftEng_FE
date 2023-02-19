@@ -48,7 +48,7 @@ const CardAddMember = () => {
       .then((data) => {
         alert("Thêm thành công");
         console.log(data);
-        window.location.reload(true);
+        // window.location.reload(true);
         // code here //
         if (data.errors) {
           alert("Error Password or Username"); /*displays error message*/

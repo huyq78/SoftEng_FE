@@ -3,13 +3,12 @@ import { useHistory, useLocation } from "react-router";
 
 // components
 
-export default function CreateAbsence() {
+export default function CreateDeath() {
   const [inputText, setInputText] = useState({
     citizen_id: "",
     code: "",
     place: "",
-    from: "",
-    to: "",
+    date: "",
     reason: "",
   });
   const location = useLocation();
@@ -24,7 +23,7 @@ export default function CreateAbsence() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:5000/absence/create", {
+    fetch("http://localhost:5000/death/create", {
       method: "POST",
       headers: {
         Accept: "application/json, */*",
@@ -35,11 +34,8 @@ export default function CreateAbsence() {
         citizen_id: citizenId,
         code: inputText.code,
         place: inputText.place,
-        date: {
-          from: inputText.from,
-          to: inputText.to,
-        },
-         reason: inputText.reason,
+        date: inputText.date,
+        reason: inputText.reason,
       }),
     })
       .then((response) => response.json())
@@ -61,7 +57,7 @@ export default function CreateAbsence() {
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <div className="rounded-t  mb-0 px-6 py-6">
             <div className="text-center flex justify-between">
-              <h6 className="text-blueGray-700 text-xl font-bold">Tạm vắng</h6>
+              <h6 className="text-blueGray-700 text-xl font-bold">Tạm chú</h6>
             </div>
           </div>
           <form>
@@ -106,30 +102,13 @@ export default function CreateAbsence() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Từ
+                    Ngày
                   </label>
                   <input
                     type="date"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    name="from"
-                    value={inputText.from}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className="w-full lg:w-6/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="text"
-                  >
-                    Đến
-                  </label>
-                  <input
-                    type="date"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    name="to"
-                    value={inputText.to}
+                    name="date"
+                    value={inputText.date}
                     onChange={handleChange}
                   />
                 </div>

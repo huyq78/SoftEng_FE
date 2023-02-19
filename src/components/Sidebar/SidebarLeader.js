@@ -135,7 +135,7 @@ export default function SidebarLeader() {
                   Household
                 </Link>
               </li>
-              <li className="items-center">
+              {/* <li className="items-center">
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
@@ -197,7 +197,7 @@ export default function SidebarLeader() {
                   ></i>{" "}
                   Death
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

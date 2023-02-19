@@ -7,7 +7,7 @@ export default function HouseholdProfile() {
   const [isFetching, setFetching] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showProfile, setProfile] = useState(true);
-  let citizenId;
+  const [members, setMembers] = useState([]);
   const [inputText, setInputText] = useState({
     household_id: "",
     owner_id: "",
@@ -16,7 +16,6 @@ export default function HouseholdProfile() {
     district: "",
     ward: "",
     no: "",
-    members: [],
     date: "",
     reason: "",
   });
@@ -35,8 +34,7 @@ export default function HouseholdProfile() {
       [event.target.name]: event.target.value,
     });
 
-  const handleDate = (event) =>
-    setInputDate(event.target.value);
+  const handleDate = (event) => setInputDate(event.target.value);
   const fetchCitizen = () => {
     fetch(`http://localhost:5000/household/profile/${householdId}`, {
       headers: {
@@ -76,7 +74,7 @@ export default function HouseholdProfile() {
           ward: inputText.ward,
           no: inputText.no,
         },
-        members: inputText.members,
+        members: members,
         move_in: {
           date: inputDate,
           reason: inputText.reason,
@@ -85,7 +83,8 @@ export default function HouseholdProfile() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(inputText);
+        console.log(data);
+        console.log(members);
         // window.location.reload(true);
         // code here //
         if (data.errors) {
@@ -98,27 +97,27 @@ export default function HouseholdProfile() {
   };
 
   const fetchDelete = (id) => {
-    fetch(`http://localhost:5000/household/remove_member/${householdId}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-      body: JSON.stringify({
-        citizen_id: id,
-      })
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(id);
-      // window.location.reload(true);
-      // code here //
-      if (data.errors) {
-        console.log(data.errors); /*displays error message*/
+    fetch(
+      `http://localhost:5000/household/remove_member?household_id=${householdId}&citizen_id=${id}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
       }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(id);
+        // window.location.reload(true);
+        // code here //
+        if (data.errors) {
+          console.log(data); /*displays error message*/
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -346,6 +345,16 @@ export default function HouseholdProfile() {
                       </div>
                     </div>
                     <div className=" mt-20 ">
+                      <button
+                        className="text-white bg-lightBlue-500 border border-solid border-teal-500 hover:bg-teal-500 hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          history.replace("/leader/household/split", {state: household})
+                        }}
+                      >
+                        Tách hộ
+                      </button>
                       <h3 className="text-center text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                         {household.owner_id.name.firstName}{" "}
                         {household.owner_id.name.lastName}
@@ -366,7 +375,8 @@ export default function HouseholdProfile() {
                         Mã khu vực: {household.areaCode}
                       </div>
                       <div className="mb-2 text-blueGray-600">
-                        Ngày chuyển đến: {household.move_in.date.substring(0, 10)}
+                        Ngày chuyển đến:{" "}
+                        {household.move_in.date.substring(0, 10)}
                       </div>
                       <div className="mb-2 text-blueGray-600">
                         Lí do chuyển đến: {household.move_in.reason}
@@ -378,6 +388,7 @@ export default function HouseholdProfile() {
                           <button
                             className="font-normal text-lightBlue-500"
                             onClick={() => {
+                              setMembers(household.members);
                               setInputText({
                                 household_id: household.household_id,
                                 owner_id: household.owner_id._id,
@@ -386,7 +397,6 @@ export default function HouseholdProfile() {
                                 district: household.address.district,
                                 ward: household.address.ward,
                                 no: household.address.no,
-                                members: household.members,
                                 date: household.move_in.date,
                                 reason: household.move_in.reason,
                               });
@@ -418,10 +428,9 @@ export default function HouseholdProfile() {
                       <tbody>
                         {household.members &&
                           household.members.map((member) => (
-                            <tr key={member._id} >
+                            <tr key={member._id}>
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-l whitespace-nowrap p-4 text-left">
-                                {/* {citizen.name.firstName} {citizen.name.lastName} */}
-                                {member._id}
+                                {member.citizen_id.name.firstName} {member.citizen_id.name.lastName}
                               </td>
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-l whitespace-nowrap p-4 text-left">
                                 {/* {citizen.name.firstName} {citizen.name.lastName} */}
@@ -432,7 +441,6 @@ export default function HouseholdProfile() {
                                   className="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                   type="button"
                                   onClick={(e) => {
-                                    citizenId = member.citizen_id._id;
                                     fetchDelete(member.citizen_id._id);
                                     console.log(member.citizen_id._id);
                                     // window.location.reload(true);
