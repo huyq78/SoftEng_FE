@@ -26,6 +26,9 @@ import CreateAbsence from "views/leader/CreateAbsence";
 import SplitHousehold from "views/leader/SplitHoushold";
 import CreateStay from "views/leader/CreateStay";
 import CreateDeath from "views/leader/CreateDeath";
+import UpdateAbsence from "views/leader/UpdateAbsence";
+import UpdateStay from "views/leader/UpdateStay";
+import UpdateDeath from "views/leader/UpdateDeath";
 
 export default function Leader() {
   return (
@@ -39,11 +42,14 @@ export default function Leader() {
           <Switch>
             <Route path="/leader/dashboard" exact component={Dashboard} />
             <Route path="/leader/absence" exact component={Absence} />
+            <Route path="/leader/absence/update" exact component={UpdateAbsence} />
             <Route path="/leader/create-citizen" exact component={CreateCitizen} />
             <Route path="/leader/household" exact component={Household} />
             <Route path="/leader/citizen" exact component={Citizen} />
             <Route path="/leader/stay" exact component={Stay} />
+            <Route path="/leader/stay/update" exact component={UpdateStay} />
             <Route path="/leader/death" exact component={Death} />
+            <Route path="/leader/death/update" exact component={UpdateDeath} />
             <Route path="/leader/citizen/profile" exact component={CitizenProfile} />
             <Route path="/leader/household/profile" exact component={HouseholdProfile} />
             <Route path="/leader/create-household" exact component={CreateHousehold} />

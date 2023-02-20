@@ -19,6 +19,8 @@ import UpdateUser from "views/admin/UpdateUser";
 import Fee from "views/accountant/Fee";
 import Trasaction from "views/accountant/Transaction";
 import SidebarAccountant from "components/Sidebar/SidebarAccountant";
+import HouseholdTrasaction from "views/accountant/HouseholdTransaction";
+import Donate from "views/accountant/Donate";
 
 export default function Accountant() {
   return (
@@ -33,6 +35,8 @@ export default function Accountant() {
             <Route path="/accountant/dashboard" exact component={Dashboard} />
             <Route path="/accountant/fee" exact component={Fee} />
             <Route path="/accountant/transaction" exact component={Trasaction} />
+            <Route path="/accountant/transaction-by-household" exact component={HouseholdTrasaction} />
+            <Route path="/accountant/transaction-by-household/donate" exact component={Donate} />
             <Redirect from="/accountant" to="/accountant/dashboard" />
           </Switch>
           {/* <FooterAdmin /> */}

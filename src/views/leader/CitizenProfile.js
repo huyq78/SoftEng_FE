@@ -16,6 +16,10 @@ export default function CitizenProfile() {
     date: "",
     expiration: "",
   });
+  const [historyDate, setHistoryDate] = useState({
+    createAt: "",
+    updateAt: "",
+  });
   const [inputCard, setInputCard] = useState({
     cardId: "",
     location: "",
@@ -54,7 +58,12 @@ export default function CitizenProfile() {
         var date = curr.toISOString().substring(0, 10);
         curr = new Date(data.data.citizen.card_id.expiration);
         var expiration = curr.toISOString().substring(0, 10);
+        curr = new Date(data.data.citizen.card_id.createdAt);
+        var createAt = curr.toUTCString().substring(0, 10);
+        curr = new Date(data.data.citizen.card_id.updatedAt);
+        var updateAt = curr.toUTCString().substring(0, 10);
         setInputDate({ dob: dob, date: date, expiration: expiration });
+        setHistoryDate({createAt: createAt, updateAt: updateAt})
         setFetching(true);
         console.log(inputDate);
       })
@@ -112,7 +121,7 @@ export default function CitizenProfile() {
           <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
             <form>
               <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                Citizen Information
+                Thông tin
               </h6>
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-6/12 px-4">
@@ -121,7 +130,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      First name
+                      Họ
                     </label>
                     <input
                       type="text"
@@ -138,7 +147,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Last name
+                      Tên
                     </label>
                     <input
                       type="text"
@@ -155,7 +164,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Gender
+                      Giới tính
                     </label>
                     <input
                       type="text"
@@ -172,7 +181,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Date of birth
+                      Ngày sinh
                     </label>
                     <input
                       type="date"
@@ -189,7 +198,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Hometown
+                      Quê quán
                     </label>
                     <input
                       type="text"
@@ -206,7 +215,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Accommodation
+                      Nơi ở
                     </label>
                     <input
                       type="text"
@@ -223,7 +232,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Birth place
+                      Nơi sinh
                     </label>
                     <input
                       type="text"
@@ -240,7 +249,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Residence
+                      Nơi cư trú
                     </label>
                     <input
                       type="text"
@@ -257,7 +266,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Religion
+                      Tôn giáo
                     </label>
                     <input
                       type="text"
@@ -274,7 +283,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Ethic
+                      Dân tộc
                     </label>
                     <input
                       type="text"
@@ -291,7 +300,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Education
+                      Học vấn
                     </label>
                     <input
                       type="text"
@@ -307,7 +316,7 @@ export default function CitizenProfile() {
               <hr className="mt-6 border-b-1 border-blueGray-300" />
 
               <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                ID identity
+                Nhận diện
               </h6>
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 px-4">
@@ -316,7 +325,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Card ID
+                      CMT/CCCD
                     </label>
                     <input
                       type="text"
@@ -333,7 +342,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Location
+                      Địa điểm
                     </label>
                     <input
                       type="text"
@@ -350,7 +359,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Date
+                      Ngày đăng kí
                     </label>
                     <input
                       type="date"
@@ -367,7 +376,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Expiration
+                      Hết hạn
                     </label>
                     <input
                       type="date"
@@ -384,7 +393,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Passport ID
+                      Hộ chiếu
                     </label>
                     <input
                       type="number"
@@ -400,7 +409,7 @@ export default function CitizenProfile() {
               <hr className="mt-6 border-b-1 border-blueGray-300" />
 
               <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                Job
+                Nghề nghiệp
               </h6>
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 px-4">
@@ -409,7 +418,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Profession
+                      Nghề nghiệp
                     </label>
                     <input
                       type="text"
@@ -426,7 +435,7 @@ export default function CitizenProfile() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Workplace
+                      Nơi làm việc
                     </label>
                     <input
                       type="text"
@@ -442,7 +451,7 @@ export default function CitizenProfile() {
                   type="button"
                   onClick={handleSubmit}
                 >
-                  Save
+                  Lưu
                 </button>
                 <button
                   className="bg-red-500 text-white active:bg-lightred-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -452,7 +461,7 @@ export default function CitizenProfile() {
                     setProfile(true);
                   }}
                 >
-                  Close
+                  Đóng
                 </button>
               </div>
             </form>
@@ -522,7 +531,7 @@ export default function CitizenProfile() {
                           history.replace("/leader/create-absence", {state: citizenId});
                         }}
                       >
-                        Tạm chú
+                        Tạm vắng
                       </button>
                       <button
                         className="text-white bg-lightBlue-500 border border-solid border-teal-500 hover:bg-teal-500 hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -532,7 +541,7 @@ export default function CitizenProfile() {
                           history.replace("/leader/create-stay", {state: citizenId});
                         }}
                       >
-                        Tạm vắng
+                        Tạm chú
                       </button>
                       <button
                         className="text-white bg-lightBlue-500 border border-solid border-teal-500 hover:bg-teal-500 hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -598,6 +607,26 @@ export default function CitizenProfile() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </section>
+            <section className="relative py-16 bg-blueGray-200">
+              <div className="container mx-auto px-4">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-4">
+                  <div className="px-6">
+                    <div className=" mt-10 ">
+                    <div className="text-center text-sm leading-normal mt-0 mb-2  font-bold uppercase">
+                        Lịch sử
+                      </div>
+                      <div className="mb-2 text-blueGray-600 mt-10">
+                        {/* <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i> */}
+                        Ngày tạo: {historyDate.createAt}
+                      </div>
+                      <div className="mb-2 text-blueGray-600">
+                        Ngày cập nhật: {historyDate.updateAt}
+                      </div>
+                      </div>
+                      </div>
                 </div>
               </div>
             </section>
