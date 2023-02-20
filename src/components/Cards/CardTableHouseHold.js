@@ -194,7 +194,7 @@ export default function CardTable({ color}) {
                         type="button"
                         onClick={(e) => {
                           fetchDelete(user._id);
-                          // window.location.reload(true);
+                          window.location.reload(true);
                         }}
                       >
                         Xóa

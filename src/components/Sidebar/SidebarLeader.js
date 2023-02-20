@@ -83,15 +83,27 @@ export default function SidebarLeader() {
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              {/* <li className="items-center">
+              <li className="items-center">
                 <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/login"
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/leader/dashboard") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/leader/dashboard"
                 >
-                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Login
+                  <i
+                    className={
+                      "fas fa-home mr-2 text-sm " +
+                      (window.location.href.indexOf("/leader/dashboard") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Trang chủ
                 </Link>
-              </li> */}
+              </li>
 
               <li className="items-center">
                 <Link
@@ -111,7 +123,7 @@ export default function SidebarLeader() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Citizen
+                  Công dân
                 </Link>
               </li>
               <li className="items-center">
@@ -126,13 +138,13 @@ export default function SidebarLeader() {
                 >
                   <i
                     className={
-                      "fas fa-home mr-2 text-sm " +
+                      "fas fa-house-user mr-2 text-sm " +
                       (window.location.href.indexOf("/leader/household") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Household
+                  Hộ khẩu
                 </Link>
               </li>
               {/* <li className="items-center">

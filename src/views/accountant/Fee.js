@@ -52,7 +52,7 @@ export default function Fee() {
         // history.replace("/admin/tables");
         // code here //
         if (data.errors) {
-          alert("Error Password or Username"); /*displays error message*/
+          alert(data.errors[0].message); /*displays error message*/
         }
       })
       .catch((err) => {
@@ -82,7 +82,7 @@ export default function Fee() {
         // history.replace("/admin/tables");
         // code here //
         if (data.errors) {
-          alert("Error Password or Username"); /*displays error message*/
+          alert(data.errors[0].message); /*displays error message*/
         }
       })
       .catch((err) => {
@@ -110,7 +110,7 @@ export default function Fee() {
         console.log(inputText.phone, inputText.password);
         // code here //
         if (data.errors) {
-          alert("Error Password or Username"); /*displays error message*/
+          alert(data.errors[0].message); /*displays error message*/
         }
       })
       .catch((err) => {
@@ -449,6 +449,7 @@ export default function Fee() {
                           handleSubmitDonation(e);
                           setCreateDonation(false);
                           setShowTable(true);
+                          window.location.reload(true);
                         }}
                       >
                         Tạo

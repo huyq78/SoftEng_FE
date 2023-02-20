@@ -7,6 +7,7 @@ const CardAddMember = () => {
   const [memberAdded, setMemberAdded] = useState(null);
   const [inputText, setInputText] = useState("");
   const [choose, setChoose] = useState(false);
+  const history = useHistory();
   const location = useLocation();
   const householdId = location.state.state;
 
@@ -47,11 +48,9 @@ const CardAddMember = () => {
       .then((response) => response.json())
       .then((data) => {
         alert("Thêm thành công");
-        console.log(data);
-        // window.location.reload(true);
-        // code here //
+        history.replace("/leader/household");
         if (data.errors) {
-          alert("Error Password or Username"); /*displays error message*/
+          alert(data.errors[0].message); /*displays error message*/
         }
       })
       .catch((err) => {

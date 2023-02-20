@@ -23,7 +23,7 @@ export default function CardUpdateUser({phone, role}) {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="phone"
                   >
-                    Phone
+                    Số điện thoại
                   </label>
                   <input
                     type="text"
@@ -38,7 +38,7 @@ export default function CardUpdateUser({phone, role}) {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="role"
                   >
-                    Role
+                    Vai trò
                   </label>
                   <input
                     type="text"

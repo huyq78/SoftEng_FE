@@ -404,7 +404,7 @@ export default function HouseholdProfile() {
                               setProfile(false);
                             }}
                           >
-                            Update profile
+                            Cập nhật
                           </button>
                         </div>
                       </div>
@@ -464,7 +464,7 @@ export default function HouseholdProfile() {
                               });
                             }}
                           >
-                            Add Member
+                            Thêm thành viên
                           </button>
                         </div>
                       </div>

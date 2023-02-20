@@ -61,14 +61,13 @@ export default function CardCreateCitizen() {
         education: inputText.education,
         }),
       })
+      
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          console.log(inputText.phone, inputText.password);
           history.replace("/leader/citizen");
           // code here //
           if (data.errors) {
-            alert("Error Password or Username"); /*displays error message*/
+            alert(data.errors[0].message); /*displays error message*/
           }
         })
         .catch((err) => {
@@ -82,7 +81,7 @@ export default function CardCreateCitizen() {
         <div className="rounded-t bg-white mb-0 px-6 py-6">
           <div className="text-center flex justify-between">
             <h6 className="text-blueGray-700 text-xl font-bold">
-              Create citizen
+              Tạo thông tin công dân
             </h6>
             
           </div>
@@ -90,7 +89,7 @@ export default function CardCreateCitizen() {
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-              Citizen Information
+              Thông tin
             </h6>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4">
@@ -99,7 +98,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    First name
+                    Họ
                   </label>
                   <input
                     type="text"
@@ -116,7 +115,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Last name
+                    Tên
                   </label>
                   <input
                     type="text"
@@ -133,7 +132,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Gender
+                    Giới tính
                   </label>
                   <input
                     type="text"
@@ -150,7 +149,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Date of birth
+                    Ngày sinh
                   </label>
                   <input
                     type="date"
@@ -167,7 +166,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Hometown
+                    Quê quán
                   </label>
                   <input
                     type="text"
@@ -184,7 +183,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Accommodation
+                    Nơi ở
                   </label>
                   <input
                     type="text"
@@ -201,7 +200,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Birth place
+                    Nơi sinh
                   </label>
                   <input
                     type="text"
@@ -218,7 +217,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Residence
+                    Nơi cư trú
                   </label>
                   <input
                     type="text"
@@ -235,7 +234,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Religion
+                    Tôn giáo
                   </label>
                   <input
                     type="text"
@@ -252,7 +251,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Ethic
+                    Dân tộc
                   </label>
                   <input
                     type="text"
@@ -269,7 +268,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Education
+                    Học vấn
                   </label>
                   <input
                     type="text"
@@ -285,7 +284,7 @@ export default function CardCreateCitizen() {
             <hr className="mt-6 border-b-1 border-blueGray-300" />
 
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-              ID identity
+              Nhận diện
             </h6>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-12/12 px-4">
@@ -294,7 +293,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Card ID
+                    CMT/CCCD
                   </label>
                   <input
                     type="number"
@@ -311,7 +310,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Location
+                    Nơi cấp
                   </label>
                   <input
                     type="text"
@@ -328,7 +327,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Date
+                    Ngày đăng kí
                   </label>
                   <input
                     type="date"
@@ -345,7 +344,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Expiration
+                    Hết hạn
                   </label>
                   <input
                     type="date"
@@ -362,7 +361,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Passport ID
+                    Hộ chiếu
                   </label>
                   <input
                     type="number"
@@ -378,7 +377,7 @@ export default function CardCreateCitizen() {
             <hr className="mt-6 border-b-1 border-blueGray-300" />
 
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-              Job
+              Công việc
             </h6>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-12/12 px-4">
@@ -387,7 +386,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Profession
+                    Nghề nghiệp
                   </label>
                   <input
                     type="text"
@@ -404,7 +403,7 @@ export default function CardCreateCitizen() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="text"
                   >
-                    Workplace
+                    Nơi làm việc
                   </label>
                   <input
                     type="text"
@@ -420,7 +419,7 @@ export default function CardCreateCitizen() {
               type="button"
               onClick={handleSubmit}
             >
-              Create
+              Tạo
             </button>
             </div>
           </form>

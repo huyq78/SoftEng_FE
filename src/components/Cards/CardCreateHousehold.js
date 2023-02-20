@@ -66,7 +66,7 @@ export default function CardCreateHousehold() {
         history.replace("/leader/household");
         // code here //
         if (data.errors) {
-          alert("Error Password or Username"); /*displays error message*/
+          alert(data.errors[0].message); /*displays error message*/
         }
       })
       .catch((err) => {
@@ -305,7 +305,7 @@ export default function CardCreateHousehold() {
                     type="button"
                     onClick={handleSubmit}
                   >
-                    Create
+                    Tạo
                   </button>
                 </div>
               </form>

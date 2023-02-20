@@ -8,15 +8,12 @@ import { useHistory } from "react-router-dom";
 import CardUpdateUser from "./CardUpdateUser";
 import { Fragment } from "react/cjs/react.production.min";
 
-export default function CardTable({ color}) {
+export default function CardTable({ color }) {
   const [showModal, setShowModal] = useState(false);
   const [users, setUsers] = useState(null);
   const [userId, setUserId] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
-  const [inputText, setInputText] = useState({
-    phone: "",
-    role: "",
-  });
+  const [inputText, setInputText] = useState(null);
 
   const handleChange = (event) =>
     setInputText({
@@ -64,13 +61,18 @@ export default function CardTable({ color}) {
       headers: {
         Accept: "application/json, */*",
         "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token")
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({
         phone: inputText.phone,
         role: inputText.role,
       }),
-  })}
+    }).then((data) => {
+      if (data.errors) {
+        alert(data.errors[0].message); /*displays error message*/
+      }
+    });
+  };
   const fetchDelete = (id) => {
     fetch(`http://localhost:5000/user/delete/${id}`, {
       method: "DELETE",
@@ -88,10 +90,12 @@ export default function CardTable({ color}) {
           <div className=" relative bg-blueGray-500 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative  w-auto my-6 mx-auto max-w-sm">
               {/*content*/}
-              <div className="border-0 bg-blueGray-500 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 bg-blueGray-200 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Update user</h3>
+                  <h3 className="text-3xl font-semibold">
+                    Cập nhật người dùng
+                  </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => {
@@ -108,43 +112,47 @@ export default function CardTable({ color}) {
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg  border-0 mt-10">
                   <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                     <form>
-                      <div className="flex flex-wrap">
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlFor="phone"
-                            >
-                              Phone
-                            </label>
-                            <input
-                              type="text"
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                              placeholder={userInfo.phone}
-                              name="phone"
-                              value={inputText.phone}
-                              onChange={handleChange}
-                            />
-                          </div>
-                        </div>
-                        <div className="w-full lg:w-6/12 px-4">
-                          <div className="relative w-full mb-3">
-                            <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                              htmlFor="role"
-                            >
-                              Role
-                            </label>
-                            <input
-                              type="text"
-                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                              placeholder={userInfo.role}
-                              name="role"
-                              value={inputText.role}
-                              onChange={handleChange}
-                            />
-                          </div>
-                        </div>
+                      <div className="relative w-full mb-3">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="text"
+                        >
+                          Số điện thoại
+                        </label>
+                        <input
+                          type="text"
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="Phone number"
+                          name="phone"
+                          value={inputText.phone}
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div>
+                        <label className="inline-flex items-center cursor-pointer">
+                          <input
+                            id="customCheckLogin"
+                            type="checkbox"
+                            className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                            name="role"
+                            value="LEADER"
+                            onChange={handleChange}
+                          />{" "}
+                          Leader{" "}
+                        </label>
+                      </div>
+                      <div>
+                        <label className="inline-flex items-center cursor-pointer">
+                          <input
+                            id="customCheckLogin"
+                            type="checkbox"
+                            className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                            name="role"
+                            value="ACCOUNTANT"
+                            onChange={handleChange}
+                          />{" "}
+                          Accountant{" "}
+                        </label>
                       </div>
                     </form>
                   </div>
@@ -159,7 +167,7 @@ export default function CardTable({ color}) {
                       setUserInfo(null);
                     }}
                   >
-                    Close
+                    Đóng
                   </button>
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -170,7 +178,7 @@ export default function CardTable({ color}) {
                       setUserInfo(null);
                     }}
                   >
-                    Save Changes
+                    Lưu
                   </button>
                 </div>
               </div>
@@ -194,7 +202,7 @@ export default function CardTable({ color}) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                User list
+                Danh sách người dùng
               </h3>
             </div>
           </div>
@@ -212,7 +220,7 @@ export default function CardTable({ color}) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Role
+                  Vai trò
                 </th>
                 <th
                   className={
@@ -222,7 +230,7 @@ export default function CardTable({ color}) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Phone
+                  Số điện thoại
                 </th>
                 <th
                   className={
@@ -232,7 +240,7 @@ export default function CardTable({ color}) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Status
+                  Trạng thái
                 </th>
                 <th
                   className={
@@ -258,11 +266,12 @@ export default function CardTable({ color}) {
                       {user.status ? (
                         <i className="fas fa-circle text-emerald-500 mr-2">
                           {" "}
-                          active{" "}
+                          hoạt động{" "}
                         </i>
                       ) : (
                         <i className="fas fa-circle text-red-500 mr-2">
-                          incative
+                          {" "}
+                          không hoạt động{" "}
                         </i>
                       )}
                     </td>
@@ -274,10 +283,11 @@ export default function CardTable({ color}) {
                         onClick={(e) => {
                           e.preventDefault();
                           setShowModal(true);
+                          setInputText(user);
                           fetchUser(user._id);
                         }}
                       >
-                        Update
+                        Sửa
                       </button>
                       <button
                         className="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -289,7 +299,7 @@ export default function CardTable({ color}) {
                           window.location.reload(true);
                         }}
                       >
-                        Delete
+                        Xóa
                       </button>
                     </td>
                   </tr>

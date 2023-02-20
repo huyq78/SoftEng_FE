@@ -35,7 +35,7 @@ export default function CardStats({
               </div>
             </div>
           </div>
-          <p className="text-sm text-blueGray-400 mt-4">
+          {/* <p className="text-sm text-blueGray-400 mt-4">
             <span className={statPercentColor + " mr-2"}>
               <i
                 className={
@@ -49,7 +49,7 @@ export default function CardStats({
               {statPercent}%
             </span>
             <span className="whitespace-nowrap">{statDescripiron}</span>
-          </p>
+          </p> */}
         </div>
       </div>
     </>
@@ -59,10 +59,7 @@ export default function CardStats({
 CardStats.defaultProps = {
   statSubtitle: "Traffic",
   statTitle: "350,897",
-  statArrow: "up",
-  statPercent: "3.48",
   statPercentColor: "text-emerald-500",
-  statDescripiron: "Since last month",
   statIconName: "far fa-chart-bar",
   statIconColor: "bg-red-500",
 };
@@ -70,12 +67,12 @@ CardStats.defaultProps = {
 CardStats.propTypes = {
   statSubtitle: PropTypes.string,
   statTitle: PropTypes.string,
-  statArrow: PropTypes.oneOf(["up", "down"]),
-  statPercent: PropTypes.string,
+  // statArrow: PropTypes.oneOf(["up", "down"]),
+  // statPercent: PropTypes.string,
   // can be any of the text color utilities
   // from tailwindcss
   statPercentColor: PropTypes.string,
-  statDescripiron: PropTypes.string,
+  // statDescripiron: PropTypes.string,
   statIconName: PropTypes.string,
   // can be any of the background color utilities
   // from tailwindcss

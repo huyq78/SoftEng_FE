@@ -601,7 +601,7 @@ export default function CitizenProfile() {
                               setProfile(false);
                             }}
                           >
-                            Update profile
+                            Cập nhật
                           </button>
                         </div>
                       </div>

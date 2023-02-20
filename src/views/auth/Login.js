@@ -96,12 +96,11 @@ export default function Login() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Phone
+                      Số điện thoại
                     </label>
                     <input
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Phone number"
                       name="phone"
                       value={inputText.phone}
                       onChange={handleChange}
@@ -113,12 +112,11 @@ export default function Login() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="password"
                     >
-                      Password
+                      Mật khẩu
                     </label>
                     <input
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Password"
                       name="password"
                       value={inputText.password}
                       onChange={handleChange}
@@ -180,7 +178,7 @@ export default function Login() {
                       // to="/admin/dashboard"
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     >
-                      Sign In
+                      Đăng nhập
                     </button>
                   </div>
                 </form>

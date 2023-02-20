@@ -112,7 +112,7 @@ export default function Sidebar() {
                   to="/admin/register"
                 >
                   <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
-                  Register
+                  Đăng kí
                 </Link>
               </li>
 
@@ -156,7 +156,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Users
+                  Người dùng
                 </Link>
               </li>
 

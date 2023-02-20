@@ -87,7 +87,7 @@ const AbsenceProfile = () => {
                       setProfile(false);
                     }}
                   >
-                    Update profile
+                    Cập nhật
                   </button>
                 </div>
               </div>

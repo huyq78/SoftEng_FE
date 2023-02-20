@@ -84,37 +84,50 @@ export default function SidebarAccountant() {
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-              {/* <li className="items-center">
+              <li className="items-center">
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/dashboard") !== -1
+                    (window.location.href.indexOf("/accountant/dashboard") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/dashboard"
+                  to="/accountant/dashboard"
                 >
                   <i
                     className={
-                      "fas fa-tv mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/dashboard") !== -1
+                      "fas fa-home mr-2 text-sm " +
+                      (window.location.href.indexOf("/accountant/dashboard") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Dashboard
+                  Trang chủ
                 </Link>
-              </li> */}
+              </li>
 
               <li className="items-center">
                 <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/accountant/fee") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
                   to="/accountant/fee"
                 >
-                  <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
-                  Fee
+                  <i
+                    className={
+                      "fas fa-clipboard-list mr-2 text-sm " +
+                      (window.location.href.indexOf("/accountant/fee") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Khoản phí
                 </Link>
               </li>
+              
 
               {/* <li className="items-center">
                 <Link
@@ -156,7 +169,7 @@ export default function SidebarAccountant() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Trasaction
+                  Khoản thu
                 </Link>
               </li>
 

@@ -160,7 +160,7 @@ export default function CardTable({ color }) {
             setBtnStay(false);
           }}
         >
-          Công dân
+          Nhân khẩu
         </button>
         <button
           className="text-teal-500 bg-white border border-solid border-teal-500 hover:bg-teal-500 hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -246,7 +246,7 @@ export default function CardTable({ color }) {
                     (color === "light" ? "text-blueGray-700" : "text-white")
                   }
                 >
-                  Danh sách công dân
+                  Danh sách Nhân khẩu
                 </h3>
               </div>
               <Link
@@ -328,6 +328,7 @@ export default function CardTable({ color }) {
                           id={user._id}
                           onClick={(e) => {
                             fetchDeleteCitizen(e.currentTarget.id);
+                            window.location.reload(true);
                             fetchCitizen();
                           }}
                         >
@@ -452,6 +453,7 @@ export default function CardTable({ color }) {
                           type="button"
                           onClick={(e) => {
                             fetchDeleteAbsence(absence._id);
+                            window.location.reload(true);
                             fetchAbsence();
                           }}
                         >
@@ -577,6 +579,7 @@ export default function CardTable({ color }) {
                           type="button"
                           onClick={(e) => {
                             fetchDeleteStay(stay._id);
+                            window.location.reload(true);
                             fetchStay();
                           }}
                         >
@@ -689,6 +692,7 @@ export default function CardTable({ color }) {
                           type="button"
                           onClick={(e) => {
                             fetchDeleteDeath(death._id);
+                            window.location.reload(true);
                             fetchDeath();
                           }}
                         >

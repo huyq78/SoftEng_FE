@@ -37,7 +37,7 @@ export default function Register() {
         history.replace("/admin/tables");
         // code here //
         if (data.errors) {
-          alert("Error Password or Username"); /*displays error message*/
+          alert(data.errors[0].message); /*displays error message*/
         }
       })
       .catch((err) => {
@@ -53,7 +53,7 @@ export default function Register() {
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
                   <h6 className="text-blueGray-500 text-xl font-bold">
-                    Register
+                    Đăng kí
                   </h6>
                 </div>
               </div>
@@ -64,7 +64,7 @@ export default function Register() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="text"
                     >
-                      Phone
+                      Số điện thoại
                     </label>
                     <input
                       type="text"
@@ -107,7 +107,7 @@ export default function Register() {
                       type="button"
                       onClick={handleSubmit}
                     >
-                      Register
+                      Đăng kí
                     </button>
                   </div>
                 </form>

@@ -71,7 +71,7 @@ export default function Absence() {
                       // setProfile(false);
                     }}
                   >
-                    Update profile
+                    Cập nhật
                   </button>
                 </div>
               </div>
